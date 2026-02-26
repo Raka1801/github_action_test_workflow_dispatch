@@ -1,0 +1,26 @@
+name: AWS_DNS_CREATE
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_update_program:
+        description: 'Should the update program run?'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  run_python:
+    runs-on: Network_Automation
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Python script
+        id: get_dns_jira
+        env:
+          # Passing the boolean input as an environment variable
+          RUN_UPDATE: ${{ github.event.inputs.run_update_program }}
+        run: |
+          python3 python-scripts/aws_dns.py
