@@ -23,4 +23,4 @@ jobs:
           # Passing the boolean input as an environment variable
           RUN_UPDATE: ${{ github.event.inputs.run_update_program }}
         run: |
-          python3 python-scripts/aws_dns.py
+          python3 workflow.py
